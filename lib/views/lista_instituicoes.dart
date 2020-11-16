@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/instituicoes_tile.dart';
 import 'package:projeto_flutter/provider/instituicoes_provider.dart';
+import 'package:projeto_flutter/views/perfil.dart';
 import 'package:provider/provider.dart';
 
 import 'doacoes_usuario.dart';
@@ -24,7 +25,10 @@ class Menu extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/perfil');
+                  Navigator.push(context, new MaterialPageRoute(
+                      builder: (context) =>
+                      new Perfil())
+                  );
                 },
               ),
               IconButton(

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 
 class Perfil extends StatelessWidget {
+
   @override
   Widget build(BuildContext context) {
+
       return Scaffold(
           appBar: AppBar(
             title: Text('Seu Perfil'),
@@ -18,28 +20,71 @@ class Perfil extends StatelessWidget {
                 children: <Widget>[
                   TextFormField(
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(labelText: 'Nome',
-                        hintText: 'Vinicius'),
+                    decoration: InputDecoration(labelText: 'Nome')
                   ),
                   TextFormField(
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(labelText: 'Telefone',
-                        hintText: '(41) 98877-6655'),
+                    decoration: InputDecoration(labelText: 'Telefone'),
                   ),
                   TextFormField(
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(labelText: 'Email',
-                        hintText: 'vinicius@email.com.br'),
+                    decoration: InputDecoration(labelText: 'Email'),
                   ),
                   TextFormField(
                     textAlign: TextAlign.center,
-                    decoration: InputDecoration(labelText: 'Senha',
-                        hintText: '123456'),
+                    decoration: InputDecoration(labelText: 'Senha'),
                   ),
+                  _RadioButton(),
                 ],
               )
           ),
         ),
+    );
+  }
+}
+
+class _RadioButton extends StatefulWidget{
+  @override
+  RadioButtonWidget createState() => RadioButtonWidget();
+}
+
+class RadioButtonWidget extends State<_RadioButton>{
+
+  String radioItem = '';
+
+  Widget build(BuildContext context){
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),
+      child: Row(
+          children: [
+            Expanded(
+              child: RadioListTile(
+                value: 'masc',
+                groupValue: radioItem,
+                activeColor: Colors.blue,
+                title: Text('Masculino'),
+                onChanged: (val){
+                  setState(() {
+                    radioItem = val;
+                  });
+                },
+              ),
+            ),
+            Expanded(
+              child: RadioListTile(
+                value: 'fem',
+                groupValue: radioItem,
+                activeColor: Colors.blue,
+                title: Text('Feminino'),
+                onChanged: (val){
+                  setState(() {
+                    radioItem = val;
+                  });
+                  },
+              ),
+            ),
+          ],
+      ),
     );
   }
 }
