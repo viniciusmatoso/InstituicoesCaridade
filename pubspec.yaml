@@ -50,6 +50,7 @@ flutter:
     - images/bear_icon.png
     - images/instituicao.jpg
     - images/background.jpg
+    - images/sem_imagem.jpg
 
   # To add assets to your application, add an assets section, like this:
   # assets:
