@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/views/nova_doacao.dart';
 
 void main() => runApp(InstituicaoSelecionada());
 
@@ -25,7 +26,7 @@ class InstituicaoSelecionada extends StatelessWidget {
                       style: TextStyle(
                         fontWeight: FontWeight.bold,
                         fontSize: 20,
-                        color: Colors.grey[800]
+                        color: Colors.blue[900]
                       ),
                     ),
                   ),
@@ -36,7 +37,8 @@ class InstituicaoSelecionada extends StatelessWidget {
                     'Somos uma organização sem fins lucrativos e bla bla blá'
                     'bla bla blá bla bla blá bla bla blá bla bla blá bla bla blá bla bla blá bla bla blá adsad bla bla blá',
                     style: TextStyle(
-                      color: Colors.grey[700],
+                      fontSize: 14,
+                      color: Colors.grey[800],
                       fontWeight: FontWeight.w500,
                     ),
                   ),
@@ -48,113 +50,56 @@ class InstituicaoSelecionada extends StatelessWidget {
       ),
     );
 
-    Widget endereco_contato = Container(
-      padding: const EdgeInsets.fromLTRB(16, 32, 16, 0),
+    Widget icones = Container(
+      padding: const EdgeInsets.fromLTRB(16, 32, 16, 12),
       child: Row(
         children: [
           Expanded(
-            /*1*/
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: Icon(
-                      Icons.home,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                  child: Text(
-                    'Rua: ',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 0),
-                  child: Text(
-                    'Bairro: ',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 0),
-                  child: Text(
-                    'Cep: ',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 0),
-                  child: Text(
-                    'Cidade: ',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 0),
-                  child: Text(
-                    'Estado: ',
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
+            child: Icon(
+                Icons.home,
+                color: Colors.blue[900]),
           ),
           Expanded(
-            /*2*/
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Center(
-                  child: Container(
-                    padding: const EdgeInsets.only(bottom: 16),
-                    child: Icon(
-                      Icons.speaker_notes,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
-                  child: Text(
-                    'Telefone: ' ,
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.fromLTRB(8, 12, 8, 0),
-                  child: Text(
-                    'Email: ' ,
-                    style: TextStyle(
-                      color: Colors.grey[700],
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                ),
-              ],
-            ),
-          ),
+            child: Icon(
+                Icons.speaker_notes,
+                color: Colors.blue[900]),
+          )
         ],
+      ),
+    );
+
+    Widget textosEnderecoContato = Container(
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        children: [
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 140, 0),
+            child: detalhesEndereco('Rua: ', 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
+          ),
+          Padding(
+            padding: const EdgeInsets.fromLTRB(0, 0, 140, 65),
+            child: detalhesContato('Telefone: ', 'Email: '),
+          )
+        ],
+      ),
+    );
+
+    Widget botaoDoacao = Container(
+      padding: const EdgeInsets.all(32),
+      child: ButtonTheme(
+        minWidth: 300.0,
+        height: 50.0,
+        buttonColor: Colors.blue[600],
+        child: RaisedButton(
+          textColor: Colors.white,
+          onPressed: (){
+            Navigator.push(context, new MaterialPageRoute(
+                builder: (context) =>
+                new NovaDoacao())
+            );
+          },
+          child: Text("Realizar nova doação"),
+        ),
       ),
     );
 
@@ -173,9 +118,101 @@ class InstituicaoSelecionada extends StatelessWidget {
                 fit: BoxFit.cover,
             ),
             descricao,
-            endereco_contato,
+            icones,
+            textosEnderecoContato,
+            botaoDoacao,
           ],
         ),
+    );
+  }
+
+  Column detalhesEndereco(String rua, String bairro, String cep, String cidade, String estado){
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 8, right: 0),
+          child: Text(
+              rua,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+              bairro,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+              cep,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+              cidade,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+              estado,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+      ],
+    );
+  }
+
+  Column detalhesContato(String telefone, String email){
+
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          margin: const EdgeInsets.only(top: 8, right: 0),
+          child: Text(
+              telefone,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+        Container(
+          margin: const EdgeInsets.only(top: 8),
+          child: Text(
+              email,
+              style: TextStyle(
+                fontSize: 12,
+                fontWeight: FontWeight.w400,
+              )
+          ),
+        ),
+      ],
     );
   }
 }

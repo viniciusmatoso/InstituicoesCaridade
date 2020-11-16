@@ -34,7 +34,7 @@ class InstituicaoTile extends StatelessWidget{
           children: <Widget>[
             IconButton(
               icon: Icon(Icons.arrow_forward),
-              color: Colors.blue,
+              color: Colors.blue[900],
               onPressed: (){
                 //Navigator.pushNamed(context, '/main/instituicao');
                 Navigator.push(

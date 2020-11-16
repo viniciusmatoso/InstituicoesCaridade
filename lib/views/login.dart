@@ -40,6 +40,7 @@ class Login extends StatelessWidget {
                       height: 50.0,
                       buttonColor: Colors.green,
                       child: RaisedButton(
+                        textColor: Colors.white,
                         onPressed: () {
                           Navigator.pushNamed(context, '/menu_usuario');
                         },
@@ -54,6 +55,7 @@ class Login extends StatelessWidget {
                       height: 50.0,
                       buttonColor: Colors.blue[900],
                       child: RaisedButton(
+                        textColor: Colors.white,
                         onPressed: () {
                           Navigator.pushNamed(context, '/cadastro');
                         },
