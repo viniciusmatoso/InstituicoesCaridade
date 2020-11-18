@@ -14,7 +14,7 @@ const INSTITUICOES = {
       cep: '84000-000',
       cidade: 'Curitiba',
       estado: 'PR',
-      foto: ''
+      foto: 'https://imagens.usp.br/wp-content/uploads/2010/05/instcrian02.jpg'
   ),
   '2' : const Instituicao(
     id: '2',
@@ -26,8 +26,8 @@ const INSTITUICOES = {
     rua: 'Rua Tranquedo Neves',
     bairro: 'Palmital',
     cep: '84000-000',
-    cidade: 'Paranaguá',
-    estado: 'PR',
-    foto: '',
+    cidade: 'São Paulo',
+    estado: 'SP',
+    foto: 'https://pequenoprincipe.org.br/wp-content/uploads/2016/09/DSC_0082-650x432.jpg',
   ),
 };

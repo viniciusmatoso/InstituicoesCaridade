@@ -50,7 +50,7 @@ class _RadioButton extends StatefulWidget{
 
 class RadioButtonWidget extends State<_RadioButton>{
 
-  String radioItem = '';
+  String radioItem = 'fem';
 
   Widget build(BuildContext context){
     return Padding(

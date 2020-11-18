@@ -35,5 +35,6 @@ class Instituicoes with ChangeNotifier{
       bairro: instituicao.bairro,
       cep: instituicao.cep,
     ));
+    notifyListeners();
   }
 }

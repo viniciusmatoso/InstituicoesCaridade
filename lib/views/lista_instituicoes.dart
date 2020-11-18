@@ -5,8 +5,6 @@ import 'package:projeto_flutter/views/menu_doacoes.dart';
 import 'package:projeto_flutter/views/perfil.dart';
 import 'package:provider/provider.dart';
 
-import 'doacoes_usuario.dart';
-
 class Menu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
@@ -60,7 +58,7 @@ class Menu extends StatelessWidget {
               image: DecorationImage(image: AssetImage(
                   "images/background.jpg"),
                 fit: BoxFit.cover,
-                colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.7), BlendMode.dstOut),
+                colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.8), BlendMode.dstOut),
               ),
             ),
             child: ListView.builder(

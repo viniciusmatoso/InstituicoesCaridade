@@ -33,7 +33,7 @@ class DoacoesUsuario extends StatelessWidget {
           image: DecorationImage(image: AssetImage(
               "images/background.jpg"),
             fit: BoxFit.cover,
-            colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.7), BlendMode.dstOut),
+            colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.8), BlendMode.dstOut),
           ),
         ),
         child: ListView.builder(

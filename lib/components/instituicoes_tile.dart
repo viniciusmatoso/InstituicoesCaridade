@@ -17,7 +17,7 @@ class InstituicaoTile extends StatelessWidget{
       title: Text(
           instituicao.nome,
           style: TextStyle(
-              color: Colors.blue[600],
+              color: Colors.blue[800],
               fontWeight: FontWeight.w700,
           )
       ),

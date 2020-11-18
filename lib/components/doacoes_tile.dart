@@ -36,7 +36,6 @@ class DoacoesTile extends StatelessWidget{
                 icon: Icon(Icons.arrow_forward),
                 color: Colors.blue[900],
                 onPressed: (){
-                  //Navigator.pushNamed(context, '/main/instituicao');
                   Navigator.push(
                     context,
                     MaterialPageRoute(builder: (context) {
