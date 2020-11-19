@@ -24,10 +24,7 @@ class Menu extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.push(context, new MaterialPageRoute(
-                      builder: (context) =>
-                      new Perfil())
-                  );
+                  Navigator.pushNamed(context, '/menu_usuario/perfil');
                 },
               ),
               IconButton(
@@ -36,7 +33,7 @@ class Menu extends StatelessWidget {
                   color: Colors.white,
                 ),
                 onPressed: () {
-                  Navigator.push(context, new MaterialPageRoute(
+                  Navigator.push(context, MaterialPageRoute(
                       builder: (context) =>
                       new MenuDoacoes())
                   );

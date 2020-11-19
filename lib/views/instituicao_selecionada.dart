@@ -70,13 +70,13 @@ class InstituicaoSelecionada extends StatelessWidget {
 
     Widget textosEnderecoContato = Container(
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Padding(
+          Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 140, 0),
-            child: detalhesEndereco('Rua: ', 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
+            child: detalhesEndereco('Rua: kkkkkkkkkkkkk', 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
           ),
-          Padding(
+          Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 140, 65),
             child: detalhesContato('Telefone: ', 'Email: '),
           )
@@ -109,19 +109,28 @@ class InstituicaoSelecionada extends StatelessWidget {
               color: Colors.white),
           ),
         ),
-        body: ListView(
-          children: [
-            Image.asset(
-                'images/instituicao.jpg',
-                width: 600,
-                height: 200,
-                fit: BoxFit.cover,
+        body: Container(
+          decoration: BoxDecoration(
+            image: DecorationImage(image: AssetImage(
+                "images/background.jpg"),
+              fit: BoxFit.cover,
+              colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.8), BlendMode.dstOut),
             ),
-            descricao,
-            icones,
-            textosEnderecoContato,
-            botaoDoacao,
-          ],
+          ),
+          child: ListView(
+            children: [
+              Image.asset(
+                  'images/instituicao.jpg',
+                  width: 600,
+                  height: 200,
+                  fit: BoxFit.cover,
+              ),
+              descricao,
+              icones,
+              textosEnderecoContato,
+              botaoDoacao,
+            ],
+          ),
         ),
     );
   }
@@ -139,7 +148,7 @@ class InstituicaoSelecionada extends StatelessWidget {
               style: TextStyle(
                 fontSize: 12,
                 fontWeight: FontWeight.w400,
-              )
+              ),
           ),
         ),
         Container(

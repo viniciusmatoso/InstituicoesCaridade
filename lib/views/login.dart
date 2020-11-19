@@ -41,6 +41,10 @@ class Login extends StatelessWidget {
                       buttonColor: Colors.green,
                       child: RaisedButton(
                         textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
+                          side: BorderSide(color: Colors.green),
+                        ),
                         onPressed: () {
                           Navigator.pushNamed(context, '/menu_usuario');
                         },
@@ -53,12 +57,16 @@ class Login extends StatelessWidget {
                     child: ButtonTheme(
                       minWidth: 400.0,
                       height: 50.0,
-                      buttonColor: Colors.blue[900],
+                      buttonColor: Colors.blue[700],
                       child: RaisedButton(
                         textColor: Colors.white,
                         onPressed: () {
                           Navigator.pushNamed(context, '/cadastro');
                         },
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(32.0),
+                          side: BorderSide(color: Colors.blue[700]),
+                        ),
                         child: Text("Cadastre-se"),
                       ),
                     )
@@ -71,8 +79,7 @@ class Login extends StatelessWidget {
       ),
     );
 
-    return MaterialApp(
-      home: Scaffold(
+    return Scaffold(
           body: ListView(
             children: [
               Image.asset(
@@ -84,7 +91,6 @@ class Login extends StatelessWidget {
               LoginAndButtons,
             ],
           )
-      ),
     );
   }
 }

@@ -5,6 +5,7 @@ class Usuario {
   final String telefone;
   final String email;
   final String sexo;
+  final String senha;
 
   const Usuario({
     this.id,
@@ -12,5 +13,6 @@ class Usuario {
     @required this.telefone,
     @required this.email,
     @required this.sexo,
+    @required this.senha,
 });
 }
