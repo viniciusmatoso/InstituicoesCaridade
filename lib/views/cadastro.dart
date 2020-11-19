@@ -13,69 +13,69 @@ class Cadastro extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          backgroundColor: Colors.blue[700],
-          title: Text('Cadastro de novo usuário'),
-        ),
-        body: Padding(
-            padding: EdgeInsets.fromLTRB(25, 15, 25, 0),
-          child: Form(
-            key: _formCadastro,
-              child: Column(
-                children: <Widget>[
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Nome'),
-                    onSaved: (value) => _formData['nome'] = value,
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Telefone'),
-                    onSaved: (value) => _formData['telefone'],
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Email'),
-                    onSaved: (value) => _formData['email'],
-                  ),
-                  TextFormField(
-                    decoration: InputDecoration(labelText: 'Senha'),
-                    onSaved: (value) => _formData['senha'],
-                  ),
-                  _RadioButton(
+          appBar: AppBar(
+            backgroundColor: Colors.blue[700],
+            title: Text('Cadastro de novo usuário'),
+          ),
+          body: Padding(
+              padding: EdgeInsets.fromLTRB(25, 15, 25, 0),
+            child: Form(
+              key: _formCadastro,
+                child: Column(
+                  children: <Widget>[
+                    TextFormField(
+                      decoration: InputDecoration(labelText: 'Nome'),
+                      onSaved: (value) => _formData['nome'] = value,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(labelText: 'Telefone'),
+                      onSaved: (value) => _formData['telefone'] = value,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(labelText: 'Email'),
+                      onSaved: (value) => _formData['email'] = value,
+                    ),
+                    TextFormField(
+                      decoration: InputDecoration(labelText: 'Senha'),
+                      onSaved: (value) => _formData['senha'] = value,
+                    ),
+                    _RadioButton(
 
-                  ),
-                  Container(
-                    margin: const EdgeInsets.all(16.0),
-                    child: ButtonTheme(
-                      minWidth: 400.0,
-                      height: 50.0,
-                      buttonColor: Colors.blue[700],
-                      child: RaisedButton(
-                        textColor: Colors.white,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(18.0),
-                            side: BorderSide(color: Colors.blue),
+                    ),
+                    Container(
+                      margin: const EdgeInsets.all(16.0),
+                      child: ButtonTheme(
+                        minWidth: 400.0,
+                        height: 50.0,
+                        buttonColor: Colors.blue[700],
+                        child: RaisedButton(
+                          textColor: Colors.white,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(18.0),
+                              side: BorderSide(color: Colors.blue),
+                          ),
+                          onPressed: (){
+                            _formCadastro.currentState.save();
+                            Provider.of<UsuariosProvider>(context, listen:false).put(
+                              Usuario(
+                                id: _formData['id'],
+                                nome: _formData['nome'],
+                                email: _formData['email'],
+                                telefone: _formData['telefone'],
+                                senha: _formData['senha'],
+                                sexo: _formData[RadioButtonWidget().radioItem],
+                              ),
+                            );
+                            Navigator.pop(context);
+                          },
+                          child: Text("Criar nova conta"),
                         ),
-                        onPressed: (){
-                          _formCadastro.currentState.save();
-                          Provider.of<UsuariosProvider>(context, listen:false).put(
-                            Usuario(
-                              id: _formData['id'],
-                              nome: _formData['nome'],
-                              email: _formData['email'],
-                              telefone: _formData['telefone'],
-                              senha: _formData['senha'],
-                              sexo: _formData[RadioButtonWidget().radioItem],
-                            ),
-                          );
-                          Navigator.pop(context);
-                        },
-                        child: Text("Criar nova conta"),
                       ),
                     ),
-                  ),
-                ],
-              ),
+                  ],
+                ),
+            ),
           ),
-        ),
     );
   }
 }
