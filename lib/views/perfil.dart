@@ -26,6 +26,7 @@ class Perfil extends StatelessWidget {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(labelText: 'Telefone'),
                   ),
+                  _RadioButton(),
                   TextFormField(
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(labelText: 'Email'),
@@ -34,7 +35,25 @@ class Perfil extends StatelessWidget {
                     textAlign: TextAlign.center,
                     decoration: InputDecoration(labelText: 'Senha'),
                   ),
-                  _RadioButton(),
+                  Container(
+                    margin: const EdgeInsets.only(top: 40),
+                    child: ButtonTheme(
+                      minWidth: 400.0,
+                      height: 50.0,
+                      buttonColor: Colors.blue[700],
+                      child: RaisedButton(
+                        textColor: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(16.0),
+                          side: BorderSide(color: Colors.blue),
+                        ),
+                        onPressed: (){
+
+                        },
+                        child: Text("Salvar"),
+                      ),
+                    ),
+                  ),
                 ],
               )
           ),
@@ -50,7 +69,7 @@ class _RadioButton extends StatefulWidget{
 
 class RadioButtonWidget extends State<_RadioButton>{
 
-  String radioItem = 'fem';
+  String radioItem = '';
 
   Widget build(BuildContext context){
     return Padding(
@@ -59,7 +78,7 @@ class RadioButtonWidget extends State<_RadioButton>{
           children: [
             Expanded(
               child: RadioListTile(
-                value: 'masc',
+                value: 'M',
                 groupValue: radioItem,
                 activeColor: Colors.blue,
                 title: Text('Masculino'),
@@ -72,7 +91,7 @@ class RadioButtonWidget extends State<_RadioButton>{
             ),
             Expanded(
               child: RadioListTile(
-                value: 'fem',
+                value: 'F',
                 groupValue: radioItem,
                 activeColor: Colors.blue,
                 title: Text('Feminino'),

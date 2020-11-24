@@ -1,10 +1,13 @@
-import 'dart:math';
+import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/data/usuarios_exemplo.dart';
 import 'package:projeto_flutter/models/usuarios.dart';
+import 'package:http/http.dart' as http;
 
 class UsuariosProvider with ChangeNotifier{
+  static const _baseUrl = 'https://projeto-flutter-51c3e.firebaseio.com/';
   final Map<String, Usuario> _users = {...USERS};
+
 
   List<Usuario> get all{
     return [..._users.values];
@@ -18,19 +21,48 @@ class UsuariosProvider with ChangeNotifier{
     return _users.values.elementAt(i);
   }
 
-  void put(Usuario usuario){
+  Future<void> put(Usuario usuario) async {
     if(usuario==null){
       return;
     }
-    final id = Random().nextDouble().toString();
-    _users.putIfAbsent(id, () => Usuario(
-      id: id,
-      nome: usuario.nome,
-      telefone: usuario.telefone,
-      email: usuario.email,
-      senha: usuario.senha,
-      sexo: usuario.sexo,
-    ));
+    if(usuario.id != null && usuario.id.trim().isNotEmpty && _users.containsKey(usuario.id)){
+      _users.update(usuario.id, (_) => Usuario(
+        id : usuario.id,
+        nome: usuario.nome,
+        telefone: usuario.telefone,
+        email: usuario.email,
+        senha: usuario.senha,
+        sexo: usuario.sexo,
+      ));
+    } else {
+      final response = await http.post(
+        "$_baseUrl/users.json",
+        body: json.encode({
+          "nome": usuario.nome,
+          "telefone": usuario.telefone,
+          "email": usuario.email,
+          "senha": usuario.senha,
+          "sexo": usuario.sexo,
+        }),
+      );
+      final id = json.decode(response.body)['name'];
+      _users.putIfAbsent(id, () => Usuario(
+            id: id,
+            nome: usuario.nome,
+            telefone: usuario.telefone,
+            email: usuario.email,
+            senha: usuario.senha,
+            sexo: usuario.sexo,
+          ));
+    }
     notifyListeners();
   }
+
+  void remove(Usuario usuario){
+    if(usuario != null && usuario.id != null){
+      _users.remove(usuario.id);
+      notifyListeners();
+    }
+  }
+
 }

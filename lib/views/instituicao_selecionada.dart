@@ -34,8 +34,7 @@ class InstituicaoSelecionada extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: Text(
-                    'Somos uma organização sem fins lucrativos e bla bla blá'
-                    'bla bla blá bla bla blá bla bla blá bla bla blá bla bla blá bla bla blá bla bla blá adsad bla bla blá',
+                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[800],
@@ -74,7 +73,7 @@ class InstituicaoSelecionada extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 140, 0),
-            child: detalhesEndereco('Rua: kkkkkkkkkkkkk', 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
+            child: detalhesEndereco('Rua: Lorem Ipsum is simply', 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 140, 65),

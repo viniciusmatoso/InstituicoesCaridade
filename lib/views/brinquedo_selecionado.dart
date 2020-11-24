@@ -11,7 +11,7 @@ class BrinquedoSelecionado extends StatelessWidget {
         child: Column(
           children: [
             Text(
-              'Nome do Brinquedo',
+              'Nome do Brinquedo: ',
               style: TextStyle(
                 backgroundColor: Colors.white,
                 fontSize: 16,
@@ -19,10 +19,20 @@ class BrinquedoSelecionado extends StatelessWidget {
                 fontWeight: FontWeight.w700,
               ),
             ),
+            Text(
+              'Boneca de Pano',
+              style: TextStyle(
+                backgroundColor: Colors.white,
+                fontSize: 16,
+                color: Colors.blue,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
-                'Novo',
+                'Condição: ',
                 style: TextStyle(
                   backgroundColor: Colors.white,
                   fontSize: 16,
@@ -31,10 +41,20 @@ class BrinquedoSelecionado extends StatelessWidget {
                 ),
               ),
             ),
+            Text(
+              'Usado',
+              style: TextStyle(
+                backgroundColor: Colors.white,
+                fontSize: 16,
+                color: Colors.blue,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
             Padding(
               padding: const EdgeInsets.only(top: 20),
               child: Text(
-                'Brinquedo mt bom em ótimo estado pois é novo brinquedo bom demais eh isso',
+                'Situação: ',
                 style: TextStyle(
                   backgroundColor: Colors.white,
                   fontSize: 16,
@@ -42,7 +62,17 @@ class BrinquedoSelecionado extends StatelessWidget {
                   fontWeight: FontWeight.w700,
                 ),
               ),
-            )
+            ),
+            Text(
+              'Aguardando Aprovação...',
+              style: TextStyle(
+                backgroundColor: Colors.white,
+                fontSize: 16,
+                color: Colors.blue,
+                fontWeight: FontWeight.w700,
+                fontStyle: FontStyle.italic,
+              ),
+            ),
           ],
         ),
       ),
@@ -50,7 +80,7 @@ class BrinquedoSelecionado extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Brinquedo tal', style: TextStyle(
+          title: Text('Boneca de pano', style: TextStyle(
               color: Colors.white),
           ),
         ),
@@ -67,7 +97,7 @@ class BrinquedoSelecionado extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(24.0),
               child: Image.asset(
-                'images/addfoto.png',
+                'images/sem_imagem.jpg',
                 width: 200,
                 height: 250,
               ),

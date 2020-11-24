@@ -3,12 +3,9 @@ import 'package:projeto_flutter/models/usuarios.dart';
 import 'package:projeto_flutter/provider/usuarios_provider.dart';
 import 'package:provider/provider.dart';
 
-void main() => runApp(Cadastro());
-
 class Cadastro extends StatelessWidget {
   final _formCadastro = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +18,7 @@ class Cadastro extends StatelessWidget {
               padding: EdgeInsets.fromLTRB(25, 15, 25, 0),
             child: Form(
               key: _formCadastro,
-                child: Column(
+                child: ListView(
                   children: <Widget>[
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Nome'),
@@ -31,16 +28,20 @@ class Cadastro extends StatelessWidget {
                       decoration: InputDecoration(labelText: 'Telefone'),
                       onSaved: (value) => _formData['telefone'] = value,
                     ),
+                    _RadioButton(
+                      valor: (value) => _formData['sexo'] = value,
+                    ),
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Email'),
                       onSaved: (value) => _formData['email'] = value,
                     ),
-                    TextFormField(
-                      decoration: InputDecoration(labelText: 'Senha'),
-                      onSaved: (value) => _formData['senha'] = value,
-                    ),
-                    _RadioButton(
-
+                    Padding(
+                      padding: const EdgeInsets.only(bottom: 40),
+                      child: TextFormField(
+                        decoration: InputDecoration(labelText: 'Senha'),
+                        obscureText: true,
+                        onSaved: (value) => _formData['senha'] = value,
+                      ),
                     ),
                     Container(
                       margin: const EdgeInsets.all(16.0),
@@ -56,14 +57,14 @@ class Cadastro extends StatelessWidget {
                           ),
                           onPressed: (){
                             _formCadastro.currentState.save();
-                            Provider.of<UsuariosProvider>(context, listen:false).put(
+                            Provider.of<UsuariosProvider>(context, listen: false).put(
                               Usuario(
                                 id: _formData['id'],
                                 nome: _formData['nome'],
                                 email: _formData['email'],
                                 telefone: _formData['telefone'],
                                 senha: _formData['senha'],
-                                sexo: _formData[RadioButtonWidget().radioItem],
+                                sexo: _formData['sexo'],
                               ),
                             );
                             Navigator.pop(context);
@@ -81,14 +82,35 @@ class Cadastro extends StatelessWidget {
 }
 
 class _RadioButton extends StatefulWidget{
+
+  final ValueChanged<String> valor;
+
+  _RadioButton({Key key, this.valor}) : super(key: key);
+
   @override
-  RadioButtonWidget createState() => RadioButtonWidget();
+  RadioButtonWidget createState(){
+    return new RadioButtonWidget();
+  }
 
 }
 
 class RadioButtonWidget extends State<_RadioButton> {
 
+  String valor;
+
   String radioItem = '';
+
+  @override
+  void initState(){
+    super.initState();
+    radioItem = 'M';
+  }
+
+  setSelecionarSexo(String val){
+    setState(() {
+      radioItem = val;
+    });
+  }
 
   Widget build(BuildContext context) {
     return Padding(
@@ -97,26 +119,28 @@ class RadioButtonWidget extends State<_RadioButton> {
         children: [
           Expanded(
             child: RadioListTile(
-              value: 'masc',
+              value: 0,
               groupValue: radioItem,
               activeColor: Colors.blue,
               title: Text('Masculino'),
-              onChanged: (newValue) {
+              onChanged: (value) {
                 setState(() {
-                  radioItem = newValue;
+                  setSelecionarSexo(value);
                 });
+                widget.valor(value);
               },
             ),
           ),
           Expanded(
             child: RadioListTile(
-              value: 'fem',
+              value: 1,
               groupValue: radioItem,
               activeColor: Colors.blue,
               title: Text('Feminino'),
-              onChanged: (newValue) {
+              onChanged: (value) {
                 setState(() {
-                  radioItem = newValue;
+                  setSelecionarSexo(value);
+                  widget.valor(value);
                 });
               },
             ),

@@ -25,10 +25,19 @@ class NovaDoacao extends StatelessWidget {
               color: Colors.white),
           ),
         ),
-      body: ListView(
-        children: [
-          textoTopo,
-        ],
+      body: Container(
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(
+              "images/background.jpg"),
+            fit: BoxFit.cover,
+            colorFilter: new ColorFilter.mode(Colors.grey.withOpacity(0.8), BlendMode.dstOut),
+          ),
+        ),
+        child: ListView(
+          children: [
+
+          ],
+        ),
       ),
     );
   }
