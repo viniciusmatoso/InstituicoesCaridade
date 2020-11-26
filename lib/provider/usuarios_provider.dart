@@ -7,10 +7,24 @@ import 'package:http/http.dart' as http;
 class UsuariosProvider with ChangeNotifier{
   static const _baseUrl = 'https://projeto-flutter-51c3e.firebaseio.com/';
   final Map<String, Usuario> _users = {...USERS};
+  final List<Usuario> usuariosFirebase = [];
 
 
-  List<Usuario> get all{
-    return [..._users.values];
+  Future<List<Usuario>> get all async{
+    final response = await http.get(
+      "$_baseUrl/users.json?"
+    );
+    final extractedData = json.decode(response.body) as Map<String, dynamic>;
+    extractedData.forEach((userId, userData) {
+      usuariosFirebase.add(
+        Usuario(
+          nome: userData['nome'],
+          email: userData['email'],
+          telefone: userData['telefone'],
+          senha: userData['senha'],
+        )
+      );
+    });
   }
 
   int get count{
@@ -35,9 +49,11 @@ class UsuariosProvider with ChangeNotifier{
         sexo: usuario.sexo,
       ));
     } else {
+      //int i = new Random().nextInt(9999);
       final response = await http.post(
         "$_baseUrl/users.json",
         body: json.encode({
+          //"id": i.toString(),
           "nome": usuario.nome,
           "telefone": usuario.telefone,
           "email": usuario.email,
@@ -46,14 +62,14 @@ class UsuariosProvider with ChangeNotifier{
         }),
       );
       final id = json.decode(response.body)['name'];
-      _users.putIfAbsent(id, () => Usuario(
+      /*_users.putIfAbsent(id, () => Usuario(
             id: id,
             nome: usuario.nome,
             telefone: usuario.telefone,
             email: usuario.email,
             senha: usuario.senha,
             sexo: usuario.sexo,
-          ));
+          ));*/
     }
     notifyListeners();
   }

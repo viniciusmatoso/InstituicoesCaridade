@@ -21,18 +21,19 @@ class Cadastro extends StatelessWidget {
                 child: ListView(
                   children: <Widget>[
                     TextFormField(
-                      decoration: InputDecoration(labelText: 'Nome'),
+                      decoration: InputDecoration(labelText: 'Nome', hintText: 'Ex: Luís da Silva'),
                       onSaved: (value) => _formData['nome'] = value,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(labelText: 'Telefone'),
+                      decoration: InputDecoration(labelText: 'Telefone', hintText: 'Ex: (41)98888-9999'),
+                      keyboardType: TextInputType.number,
                       onSaved: (value) => _formData['telefone'] = value,
                     ),
                     _RadioButton(
                       valor: (value) => _formData['sexo'] = value,
                     ),
                     TextFormField(
-                      decoration: InputDecoration(labelText: 'Email'),
+                      decoration: InputDecoration(labelText: 'Email', hintText: 'Ex: fulano@gmail.com'),
                       onSaved: (value) => _formData['email'] = value,
                     ),
                     Padding(

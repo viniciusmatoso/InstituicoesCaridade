@@ -9,11 +9,16 @@ class Login extends StatelessWidget {
 
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
-  var email = TextEditingController();
-  var senha = TextEditingController();
+
 
   @override
   Widget build(BuildContext context) {
+    Provider.of<UsuariosProvider>(context, listen: false).all;
+    var usuarios = Provider.of<UsuariosProvider>(context, listen: false).usuariosFirebase;
+
+    //var email = TextEditingController();
+    //var senha = TextEditingController();
+
     Widget LoginAndButtons = Container(
       padding: const EdgeInsets.all(32),
       child: Form(
@@ -30,16 +35,30 @@ class Login extends StatelessWidget {
                     margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                     padding: const EdgeInsets.only(bottom: 18),
                     child: TextFormField(
-                      controller: email,
+                      //controller: email,
+                      onSaved: (value) => _formData['email'] = value,
+                      validator: (value){
+                        if(value.isEmpty){
+                          return 'Email é obrigatório!';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                           hintText: "Digite seu email",
-                          contentPadding: EdgeInsets.fromLTRB(110.0, 20.0, 110.0, 0)
+                          contentPadding: EdgeInsets.fromLTRB(110.0, 20.0, 110.0, 0),
                       ),
                     ),
                   ),
                   Container(
                     child: TextFormField(
-                      controller: senha,
+                      //controller: senha,
+                      onSaved: (value) => _formData['senha'] = value,
+                      validator: (value) {
+                        if (value.isEmpty) {
+                          return 'Senha é obrigatória!';
+                        }
+                        return null;
+                      },
                       decoration: InputDecoration(
                           hintText: "Digite sua senha",
                           contentPadding: EdgeInsets.fromLTRB(110.0, 20.0, 110.0, 0),
@@ -60,9 +79,16 @@ class Login extends StatelessWidget {
                             side: BorderSide(color: Colors.green),
                           ),
                           onPressed: () {
-                            //_form.currentState.validate();
-                            //bool verdadeiro = Provider.of<UsuariosProvider>(context, listen:false).auth(email.toString(), senha.toString());
-                              Navigator.pushNamed(context, '/menu_usuario');
+                              if(_form.currentState.validate()){
+                                _form.currentState.save();
+                                for(int i = 0; i < usuarios.length; i++){
+                                  if(_formData['email'] == usuarios[i].email && _formData['senha'] == usuarios[i].senha){
+
+                                    Navigator.pushNamed(context, '/menu_usuario', arguments: usuarios[i]);
+                                  }
+                                }
+
+                              }
                           },
                           child: Text("Login"),
                         ),
