@@ -1,11 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/models/instituicoes.dart';
-import 'package:projeto_flutter/views/instituicao_selecionada.dart';
+import 'package:projeto_flutter/models/usuarios.dart';
 
 class InstituicaoTile extends StatelessWidget{
   final Instituicao instituicao;
-  const InstituicaoTile(this.instituicao);
+  final Usuario usuario;
+  const InstituicaoTile(this.instituicao, this.usuario);
+
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +38,7 @@ class InstituicaoTile extends StatelessWidget{
               icon: Icon(Icons.arrow_forward),
               color: Colors.blue[900],
               onPressed: (){
-                //Navigator.pushNamed(context, '/main/instituicao');
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) {
-                    return InstituicaoSelecionada();
-                  }),
-                );
+                Navigator.pushNamed(context, '/menu_usuario/instituicao', arguments: {usuario, instituicao});
               },
             )
           ],

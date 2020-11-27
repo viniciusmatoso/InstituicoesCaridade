@@ -4,8 +4,6 @@ import 'package:projeto_flutter/provider/doacoes_provider.dart';
 import 'package:projeto_flutter/views/menu_usuario.dart';
 import 'package:provider/provider.dart';
 
-import 'menu_doacoes.dart';
-
 class DoacoesUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {

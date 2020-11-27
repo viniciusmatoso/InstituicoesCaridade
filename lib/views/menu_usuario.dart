@@ -6,11 +6,12 @@ import 'package:projeto_flutter/views/perfil.dart';
 import 'package:provider/provider.dart';
 import 'doacoes_usuario.dart';
 import 'instituicao_selecionada.dart';
-import 'menu_doacoes.dart';
 
 class MenuUsuario extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+
+    final Usuario usuario = ModalRoute.of(context).settings.arguments;
 
     return ChangeNotifierProvider(
       create: (ctx) => Instituicoes(),
@@ -19,7 +20,7 @@ class MenuUsuario extends StatelessWidget {
           primarySwatch: Colors.blue,
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        home: Menu(),
+        home: Menu(usuario),
         routes: {
           '/menu_usuario/perfil': (context) => Perfil(),
           '/menu_usuario/instituicao' : (context) => InstituicaoSelecionada(),
@@ -31,12 +32,13 @@ class MenuUsuario extends StatelessWidget {
 }
 
 class Menu extends StatelessWidget {
+  Menu(this.usuario);
+  final Usuario usuario;
+
   @override
   Widget build(BuildContext context) {
 
     final Instituicoes inst = Provider.of(context);
-
-    final Usuario usuario = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
         appBar: AppBar(
@@ -51,7 +53,7 @@ class Menu extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.pushNamed(context, '/menu_usuario/perfil');
+                Navigator.pushNamed(context, '/menu_usuario/perfil', arguments: usuario);
               },
             ),
             IconButton(
@@ -60,10 +62,7 @@ class Menu extends StatelessWidget {
                 color: Colors.white,
               ),
               onPressed: () {
-                Navigator.push(context, MaterialPageRoute(
-                    builder: (context) =>
-                    new MenuDoacoes())
-                );
+                Navigator.pushNamed(context, '/menu_usuario/doacoes', arguments: usuario);
               },
             ),
             IconButton(
@@ -87,7 +86,7 @@ class Menu extends StatelessWidget {
           ),
           child: ListView.builder(
             itemCount: inst.count,
-            itemBuilder: (ctx, i) => InstituicaoTile(inst.byIndex(i)),
+            itemBuilder: (ctx, i) => InstituicaoTile(inst.byIndex(i), usuario),
           ),
         )
     );

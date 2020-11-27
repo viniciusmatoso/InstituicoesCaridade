@@ -1,12 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/models/instituicoes.dart';
+import 'package:projeto_flutter/models/usuarios.dart';
 import 'package:projeto_flutter/views/nova_doacao.dart';
-
-void main() => runApp(InstituicaoSelecionada());
 
 class InstituicaoSelecionada extends StatelessWidget {
 
+  final Map<String, String> _formData = {};
+
+  void _loadInstituicao(Instituicao instituicao){
+    if(instituicao != null){
+      _formData['rua'] = instituicao.rua;
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
+    //final Usuario usuario = ModalRoute.of(context).settings.arguments;
+    //final Instituicao instituicao = ModalRoute.of(context).settings.arguments;
+    //_loadInstituicao(instituicao);
+    //List<String> args = ModalRoute.of(context).settings.arguments;
 
     Widget descricao = Container(
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
@@ -73,7 +85,7 @@ class InstituicaoSelecionada extends StatelessWidget {
         children: [
           Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 140, 0),
-            child: detalhesEndereco('Rua: Lorem Ipsum is simply', 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
+            child: detalhesEndereco("Rua: $_formData['rua']", 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
           ),
           Container(
             padding: const EdgeInsets.fromLTRB(0, 0, 140, 65),

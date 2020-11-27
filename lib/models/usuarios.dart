@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/models/doacoes.dart';
 class Usuario {
   final String id;
   final String nome;

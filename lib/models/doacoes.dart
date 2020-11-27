@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/models/usuarios.dart';
 
 class Doacao{
   final String id;
@@ -6,12 +7,14 @@ class Doacao{
   final String condicao;
   final String situacao;
   final String imagem;
+  final Usuario usuario;
 
   const Doacao({
     this.id,
     @required this.nomeBrinquedo,
     @required this.condicao,
     @required this.situacao,
-    @required this.imagem
+    @required this.imagem,
+    @required this.usuario,
   });
 }

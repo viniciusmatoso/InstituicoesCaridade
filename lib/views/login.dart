@@ -16,9 +16,6 @@ class Login extends StatelessWidget {
     Provider.of<UsuariosProvider>(context, listen: false).all;
     var usuarios = Provider.of<UsuariosProvider>(context, listen: false).usuariosFirebase;
 
-    //var email = TextEditingController();
-    //var senha = TextEditingController();
-
     Widget LoginAndButtons = Container(
       padding: const EdgeInsets.all(32),
       child: Form(
