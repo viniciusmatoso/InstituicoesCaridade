@@ -6,7 +6,7 @@ import 'package:projeto_flutter/models/usuarios.dart';
 class InstituicaoTile extends StatelessWidget{
   final Instituicao instituicao;
   final Usuario usuario;
-  const InstituicaoTile(this.instituicao, this.usuario);
+  InstituicaoTile(this.instituicao, this.usuario);
 
 
   @override
@@ -38,7 +38,7 @@ class InstituicaoTile extends StatelessWidget{
               icon: Icon(Icons.arrow_forward),
               color: Colors.blue[900],
               onPressed: (){
-                Navigator.pushNamed(context, '/menu_usuario/instituicao', arguments: {usuario, instituicao});
+                Navigator.pushNamed(context, '/menu_usuario/instituicao', arguments: {'usuario': usuario, 'instituicao': instituicao});
               },
             )
           ],

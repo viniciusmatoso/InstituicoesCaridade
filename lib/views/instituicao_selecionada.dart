@@ -5,20 +5,35 @@ import 'package:projeto_flutter/views/nova_doacao.dart';
 
 class InstituicaoSelecionada extends StatelessWidget {
 
-  final Map<String, String> _formData = {};
+  String rua = '';
+  String bairro = '';
+  String cep = '';
+  String cidade = '';
+  String estado = '';
+  String telefone = '';
+  String email = '';
 
   void _loadInstituicao(Instituicao instituicao){
     if(instituicao != null){
-      _formData['rua'] = instituicao.rua;
+      rua = instituicao.rua;
+      bairro = instituicao.bairro;
+      cep = instituicao.cep;
+      cidade = instituicao.cidade;
+      estado = instituicao.estado;
+      telefone = instituicao.telefone;
+      email = instituicao.email;
     }
   }
 
   @override
   Widget build(BuildContext context) {
-    //final Usuario usuario = ModalRoute.of(context).settings.arguments;
-    //final Instituicao instituicao = ModalRoute.of(context).settings.arguments;
-    //_loadInstituicao(instituicao);
-    //List<String> args = ModalRoute.of(context).settings.arguments;
+    final Map arguments = ModalRoute.of(context).settings.arguments as Map;
+
+    final Instituicao instituicao = arguments['instituicao'];
+    final Usuario usuario = arguments['usuario'];
+
+    _loadInstituicao(instituicao);
+
 
     Widget descricao = Container(
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
@@ -83,13 +98,19 @@ class InstituicaoSelecionada extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-          Container(
-            padding: const EdgeInsets.fromLTRB(0, 0, 140, 0),
-            child: detalhesEndereco("Rua: $_formData['rua']", 'Bairro: ', 'Cep: ', 'Cidade: ', 'Estado: '),
+          Flexible(
+            child: Container(
+              width: 180,
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: detalhesEndereco("Rua: $rua balbla lalbllba", 'Bairro: $bairro', 'Cep: $cep', 'Cidade: $cidade', 'Estado: $estado'),
+            ),
           ),
-          Container(
-            padding: const EdgeInsets.fromLTRB(0, 0, 140, 65),
-            child: detalhesContato('Telefone: ', 'Email: '),
+          Flexible(
+            child: Container(
+              width: 180,
+              margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
+              child: detalhesContato('Telefone: $telefone', 'Email: $email'),
+            ),
           )
         ],
       ),
@@ -157,7 +178,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               rua,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               ),
           ),
@@ -167,7 +188,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               bairro,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               )
           ),
@@ -177,7 +198,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               cep,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               )
           ),
@@ -187,7 +208,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               cidade,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               )
           ),
@@ -197,7 +218,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               estado,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               )
           ),
@@ -217,7 +238,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               telefone,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               )
           ),
@@ -227,7 +248,7 @@ class InstituicaoSelecionada extends StatelessWidget {
           child: Text(
               email,
               style: TextStyle(
-                fontSize: 12,
+                fontSize: 14,
                 fontWeight: FontWeight.w400,
               )
           ),
