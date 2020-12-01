@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/instituicoes_tile.dart';
 import 'package:projeto_flutter/models/usuarios.dart';
 import 'package:projeto_flutter/provider/instituicoes_provider.dart';
+import 'package:projeto_flutter/views/brinquedo_selecionado.dart';
+import 'package:projeto_flutter/views/nova_doacao.dart';
 import 'package:projeto_flutter/views/perfil.dart';
 import 'package:provider/provider.dart';
 import 'doacoes_usuario.dart';
@@ -24,7 +26,9 @@ class MenuUsuario extends StatelessWidget {
         routes: {
           '/menu_usuario/perfil': (context) => Perfil(),
           '/menu_usuario/instituicao' : (context) => InstituicaoSelecionada(),
+          '/menu_usuario/instituicao/nova_doacao' : (context) => NovaDoacao(),
           '/menu_usuario/doacoes' : (context) => DoacoesUsuario(),
+          '/menu_usuarios/doacoes/brinquedo_selecionado' : (context) => BrinquedoSelecionado(),
         },
       ),
     );

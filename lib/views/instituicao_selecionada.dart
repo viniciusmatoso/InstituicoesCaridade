@@ -5,6 +5,7 @@ import 'package:projeto_flutter/views/nova_doacao.dart';
 
 class InstituicaoSelecionada extends StatelessWidget {
 
+  String nome = '';
   String rua = '';
   String bairro = '';
   String cep = '';
@@ -15,6 +16,7 @@ class InstituicaoSelecionada extends StatelessWidget {
 
   void _loadInstituicao(Instituicao instituicao){
     if(instituicao != null){
+      nome = instituicao.nome;
       rua = instituicao.rua;
       bairro = instituicao.bairro;
       cep = instituicao.cep;
@@ -125,10 +127,7 @@ class InstituicaoSelecionada extends StatelessWidget {
         child: RaisedButton(
           textColor: Colors.white,
           onPressed: (){
-            Navigator.push(context, new MaterialPageRoute(
-                builder: (context) =>
-                new NovaDoacao())
-            );
+            Navigator.pushNamed(context, '/menu_usuario/instituicao/nova_doacao');
           },
           child: Text("Realizar nova doação"),
         ),
@@ -137,7 +136,7 @@ class InstituicaoSelecionada extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Pequeno Príncipe', style: TextStyle(
+          title: Text(nome, style: TextStyle(
               color: Colors.white),
           ),
         ),
