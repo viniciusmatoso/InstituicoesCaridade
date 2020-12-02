@@ -4,6 +4,8 @@ class NovaDoacao extends StatelessWidget {
   final _form = GlobalKey<FormState>();
   final Map<String, String> _formBrinquedo = {};
 
+  String condicao;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,14 +27,20 @@ class NovaDoacao extends StatelessWidget {
           child: ListView(
             children: <Widget>[
               Padding(
-                padding: const EdgeInsets.fromLTRB(40, 20, 40, 0),
+                padding: const EdgeInsets.fromLTRB(15, 20, 15, 0),
                 child: TextFormField(
                   decoration: InputDecoration(labelText: 'Nome do Brinquedo'),
+                  style: TextStyle(
+                    color: Colors.blue[700],
+                  ),
                   onSaved: (value) => _formBrinquedo['nomeBrinquedo'] = value,
                 ),
               ),
               _RadioButton(
-
+                valor: (value){
+                  condicao = value;
+                  _formBrinquedo['condicao'] = condicao;
+                },
               ),
             ],
           ),
@@ -50,9 +58,7 @@ class _RadioButton extends StatefulWidget{
   _RadioButton({Key key, this.valor}) : super(key: key);
 
   @override
-  RadioWidget createState(){
-    return new RadioWidget();
-  }
+  RadioWidget createState() => RadioWidget();
 
 }
 
@@ -74,7 +80,7 @@ class RadioWidget extends State<_RadioButton>{
         children: [
           Expanded(
             child: RadioListTile(
-              value: 0,
+              value: 'Usado',
               groupValue: radioItem,
               activeColor: Colors.blue,
               title: Text('Usado'),
@@ -87,7 +93,7 @@ class RadioWidget extends State<_RadioButton>{
           ),
           Expanded(
             child: RadioListTile(
-              value: 1,
+              value: 'Novo',
               groupValue: radioItem,
               activeColor: Colors.blue,
               title: Text('Novo'),

@@ -7,6 +7,8 @@ class Cadastro extends StatelessWidget {
   final _formCadastro = GlobalKey<FormState>();
   final Map<String, String> _formData = {};
 
+  String sexo;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +32,10 @@ class Cadastro extends StatelessWidget {
                       onSaved: (value) => _formData['telefone'] = value,
                     ),
                     _RadioButton(
-                      valor: (value) => _formData['sexo'] = value,
+                      valor: (value){
+                        sexo = value;
+                        _formData['sexo'] = value;
+                      },
                     ),
                     TextFormField(
                       decoration: InputDecoration(labelText: 'Email', hintText: 'Ex: fulano@gmail.com'),
@@ -89,25 +94,15 @@ class _RadioButton extends StatefulWidget{
   _RadioButton({Key key, this.valor}) : super(key: key);
 
   @override
-  RadioButtonWidget createState(){
-    return new RadioButtonWidget();
-  }
+  RadioButtonWidget createState() => RadioButtonWidget();
 
 }
 
 class RadioButtonWidget extends State<_RadioButton> {
 
-  String valor;
-
   String radioItem = '';
 
-  @override
-  void initState(){
-    super.initState();
-    radioItem = 'M';
-  }
-
-  setSelecionarSexo(String val){
+  void setSelecionarSexo(String val){
     setState(() {
       radioItem = val;
     });
@@ -120,21 +115,21 @@ class RadioButtonWidget extends State<_RadioButton> {
         children: [
           Expanded(
             child: RadioListTile(
-              value: 0,
+              value: 'M',
               groupValue: radioItem,
               activeColor: Colors.blue,
               title: Text('Masculino'),
               onChanged: (value) {
                 setState(() {
                   setSelecionarSexo(value);
+                  widget.valor(value);
                 });
-                widget.valor(value);
               },
             ),
           ),
           Expanded(
             child: RadioListTile(
-              value: 1,
+              value: 'F',
               groupValue: radioItem,
               activeColor: Colors.blue,
               title: Text('Feminino'),
