@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/models/instituicoes.dart';
 import 'package:projeto_flutter/models/usuarios.dart';
-import 'package:projeto_flutter/views/nova_doacao.dart';
 
 class InstituicaoSelecionada extends StatelessWidget {
 
@@ -127,7 +126,7 @@ class InstituicaoSelecionada extends StatelessWidget {
         child: RaisedButton(
           textColor: Colors.white,
           onPressed: (){
-            Navigator.pushNamed(context, '/menu_usuario/instituicao/nova_doacao');
+            Navigator.pushNamed(context, '/menu_usuario/instituicao/nova_doacao', arguments: {'usuario': usuario, 'instituicao': instituicao});
           },
           child: Text("Realizar nova doação"),
         ),

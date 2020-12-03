@@ -8,8 +8,8 @@ class Doacao{
   final String condicao;
   final String situacao;
   final String imagem;
-  final Usuario usuario;
-  final Instituicao instituicao;
+  final String usuarioEmail;
+  final String instituicaoEmail;
 
   const Doacao({
     this.id,
@@ -17,7 +17,7 @@ class Doacao{
     @required this.condicao,
     @required this.situacao,
     @required this.imagem,
-    @required this.usuario,
-    @required this.instituicao,
+    @required this.usuarioEmail,
+    @required this.instituicaoEmail,
   });
 }

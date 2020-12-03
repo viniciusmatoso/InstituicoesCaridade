@@ -20,6 +20,7 @@ class UsuariosProvider with ChangeNotifier{
         Usuario(
           nome: userData['nome'],
           email: userData['email'],
+          sexo: userData['sexo'],
           telefone: userData['telefone'],
           senha: userData['senha'],
         )
@@ -49,7 +50,6 @@ class UsuariosProvider with ChangeNotifier{
         sexo: usuario.sexo,
       ));
     } else {
-      //int i = new Random().nextInt(9999);
       final response = await http.post(
         "$_baseUrl/users.json",
         body: json.encode({
