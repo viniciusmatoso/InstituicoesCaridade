@@ -88,7 +88,7 @@ class NovaDoacao extends StatelessWidget {
                         Doacao(
                           id: _formBrinquedo['id'],
                           nomeBrinquedo: _formBrinquedo['nomeBrinquedo'],
-                          situacao: _formBrinquedo['situacao'],
+                          situacao: _formBrinquedo['situacao'] = situacao,
                           condicao: _formBrinquedo['condicao'],
                           imagem: _formBrinquedo['imagem'],
                           usuarioEmail: _formBrinquedo['usuario'],

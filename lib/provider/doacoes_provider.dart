@@ -1,22 +1,23 @@
 import 'dart:convert';
-import 'dart:math';
 import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/data/doacoes_exemplo.dart';
 import 'package:projeto_flutter/models/doacoes.dart';
 
 class DoacoesProvider with ChangeNotifier{
-  final Map<String, Doacao> _doacoes = {...DOACOES};
+  //final Map<String, Doacao> _doacoes = {...DOACOES};
   static const _baseUrl = 'https://projeto-flutter-51c3e.firebaseio.com/';
-  final List<Doacao> doacoesFirebase = [];
+  List<Doacao> doacoesFirebase = [];
+  final Map<String, Doacao> _doacoes = {};
 
   Future<List<Doacao>> get all async{
     final response = await http.get(
       "$_baseUrl/doacoes.json?"
     );
+    final List<Doacao> loadedDoacao = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     extractedData.forEach((doacaoId, doacaoData) {
-      doacoesFirebase.add(
+      loadedDoacao.add(
         Doacao(
           nomeBrinquedo: doacaoData['nomeBrinquedo'],
           imagem: doacaoData['imagem'],
@@ -24,13 +25,18 @@ class DoacoesProvider with ChangeNotifier{
           condicao: doacaoData['condicao'],
           usuarioEmail: doacaoData['usuario'],
           instituicaoEmail: doacaoData['instituicao'],
-        )
+        ),
       );
     });
+    doacoesFirebase = loadedDoacao;
   }
 
   int get count{
-    return _doacoes.length;
+    return _doacoes.values.length;
+  }
+
+  Doacao byUser(int i){
+    return doacoesFirebase.elementAt(i);
   }
 
   Doacao byIndex(int i){
@@ -43,7 +49,6 @@ class DoacoesProvider with ChangeNotifier{
     }
     if(doacao.id != null && doacao.id.trim().isNotEmpty && _doacoes.containsKey(doacao.id)){
       _doacoes.update(doacao.id, (_) => Doacao(
-        id: doacao.id,
         nomeBrinquedo: doacao.nomeBrinquedo,
         situacao: doacao.situacao,
         condicao: doacao.condicao,
@@ -66,16 +71,6 @@ class DoacoesProvider with ChangeNotifier{
       );
       final id = json.decode(response.body)['name'];
     }
-    /*final id = Random().nextDouble().toString();
-    _doacoes.putIfAbsent(id, () => Doacao(
-      id: id,
-      nomeBrinquedo: doacao.nomeBrinquedo,
-      situacao: doacao.situacao,
-      usuarioEmail: doacao.usuarioEmail,
-      instituicaoEmail: doacao.instituicaoEmail,
-      condicao: doacao.condicao,
-      imagem: doacao.imagem,
-    ));*/
   }
   notifyListeners();
 }

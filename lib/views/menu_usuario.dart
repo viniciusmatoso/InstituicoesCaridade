@@ -46,7 +46,7 @@ class Menu extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Instituições de Caridade', style: TextStyle(
+          title: Text('Instituições', style: TextStyle(
               color: Colors.white
           ),
           ),

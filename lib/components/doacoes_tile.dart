@@ -1,10 +1,13 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/models/doacoes.dart';
+import 'package:projeto_flutter/models/usuarios.dart';
 
 class DoacoesTile extends StatelessWidget{
   final Doacao doacao;
-  const DoacoesTile(this.doacao);
+  final Usuario usuario;
+  const DoacoesTile(this.doacao, this.usuario);
+
 
   @override
   Widget build(BuildContext context) {
@@ -35,7 +38,7 @@ class DoacoesTile extends StatelessWidget{
                 icon: Icon(Icons.arrow_forward),
                 color: Colors.blue[900],
                 onPressed: (){
-                  Navigator.pushNamed(context, '/menu_usuarios/doacoes/brinquedo_selecionado');
+                  Navigator.pushNamed(context, '/menu_usuarios/doacoes/brinquedo_selecionado', arguments: doacao);
                 },
               )
             ],
