@@ -7,6 +7,7 @@ import 'package:projeto_flutter/views/nova_doacao.dart';
 import 'package:projeto_flutter/views/perfil.dart';
 import 'package:provider/provider.dart';
 import 'doacoes_usuario.dart';
+import 'gps.dart';
 import 'instituicao_selecionada.dart';
 
 class MenuUsuario extends StatelessWidget {
@@ -26,6 +27,7 @@ class MenuUsuario extends StatelessWidget {
         routes: {
           '/menu_usuario/perfil': (context) => Perfil(),
           '/menu_usuario/instituicao' : (context) => InstituicaoSelecionada(),
+          '/menu_usuario/instituicao/gps' : (context) => GPS(),
           '/menu_usuario/instituicao/nova_doacao' : (context) => NovaDoacao(),
           '/menu_usuario/doacoes' : (context) => DoacoesUsuario(),
           '/menu_usuarios/doacoes/brinquedo_selecionado' : (context) => BrinquedoSelecionado(),

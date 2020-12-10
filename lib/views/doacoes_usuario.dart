@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/components/doacoes_tile.dart';
-import 'package:projeto_flutter/models/doacoes.dart';
 import 'package:projeto_flutter/models/usuarios.dart';
 import 'package:projeto_flutter/provider/doacoes_provider.dart';
 import 'package:provider/provider.dart';
@@ -11,6 +10,13 @@ class DoacoesUsuario extends StatelessWidget {
 
     DoacoesProvider doacoes = Provider.of(context);
 
+    var doacoesFirebase = Provider.of<DoacoesProvider>(context, listen: false).doacoesFirebase;
+
+    if(doacoesFirebase.isEmpty){
+      doacoes.all;
+
+    }
+
     final Usuario usuario = ModalRoute.of(context).settings.arguments;
 
     return Scaffold(
@@ -18,6 +24,12 @@ class DoacoesUsuario extends StatelessWidget {
           title: Text('Suas últimas doações', style: TextStyle(
               color: Colors.white
           ),
+          ),
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: (){
+              Navigator.of(context).pop();
+            },
           ),
         ),
       body: Container(
@@ -30,7 +42,7 @@ class DoacoesUsuario extends StatelessWidget {
         ),
         child: ListView.builder(
             itemCount: doacoes.count,
-            itemBuilder: (ctx, i) => DoacoesTile(doacoes.byIndex(i), usuario),
+            itemBuilder: (ctx, i) => DoacoesTile(doacoes.byUser(i), usuario),
         ),
       ),
     );

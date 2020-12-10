@@ -2,11 +2,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/models/doacoes.dart';
 import 'package:projeto_flutter/models/usuarios.dart';
+import 'package:projeto_flutter/provider/doacoes_provider.dart';
+import 'package:provider/provider.dart';
 
 class DoacoesTile extends StatelessWidget{
   final Doacao doacao;
   final Usuario usuario;
   const DoacoesTile(this.doacao, this.usuario);
+
 
 
   @override
@@ -20,13 +23,6 @@ class DoacoesTile extends StatelessWidget{
           doacao.nomeBrinquedo,
           style: TextStyle(
             color: Colors.blue[600],
-            fontWeight: FontWeight.w700,
-          )
-      ),
-      subtitle: Text(
-          doacao.condicao,
-          style: TextStyle(
-            color: Colors.blue[900],
             fontWeight: FontWeight.w700,
           )
       ),

@@ -8,7 +8,7 @@ class DoacoesProvider with ChangeNotifier{
   //final Map<String, Doacao> _doacoes = {...DOACOES};
   static const _baseUrl = 'https://projeto-flutter-51c3e.firebaseio.com/';
   List<Doacao> doacoesFirebase = [];
-  final Map<String, Doacao> _doacoes = {};
+  Map<String, Doacao> _doacoes = {...DOACOES};
 
   Future<List<Doacao>> get all async{
     final response = await http.get(
@@ -17,7 +17,7 @@ class DoacoesProvider with ChangeNotifier{
     final List<Doacao> loadedDoacao = [];
     final extractedData = json.decode(response.body) as Map<String, dynamic>;
     extractedData.forEach((doacaoId, doacaoData) {
-      loadedDoacao.add(
+      doacoesFirebase.add(
         Doacao(
           nomeBrinquedo: doacaoData['nomeBrinquedo'],
           imagem: doacaoData['imagem'],
@@ -28,11 +28,11 @@ class DoacoesProvider with ChangeNotifier{
         ),
       );
     });
-    doacoesFirebase = loadedDoacao;
+
   }
 
-  int get count{
-    return _doacoes.values.length;
+  int get count {
+    return doacoesFirebase.length;
   }
 
   Doacao byUser(int i){

@@ -103,7 +103,7 @@ class InstituicaoSelecionada extends StatelessWidget {
             child: Container(
               width: 180,
               margin: EdgeInsets.fromLTRB(10, 0, 10, 0),
-              child: detalhesEndereco("Rua: $rua balbla lalbllba", 'Bairro: $bairro', 'Cep: $cep', 'Cidade: $cidade', 'Estado: $estado'),
+              child: detalhesEndereco("Rua: $rua", 'Bairro: $bairro', 'Cep: $cep', 'Cidade: $cidade', 'Estado: $estado'),
             ),
           ),
           Flexible(
@@ -117,8 +117,26 @@ class InstituicaoSelecionada extends StatelessWidget {
       ),
     );
 
+    Widget gps = Container(
+      margin: const EdgeInsets.fromLTRB(0, 5, 0, 0),
+      child: Center(
+        child: TextButton(
+          child: Text(
+            "Ver no GPS",
+            style: TextStyle(
+              fontSize: 16,
+              fontWeight: FontWeight.w400,
+            ),
+          ),
+          onPressed: (){
+            Navigator.pushNamed(context, '/menu_usuario/instituicao/gps');
+          },
+        ),
+      ),
+    );
+
     Widget botaoDoacao = Container(
-      padding: const EdgeInsets.all(32),
+      padding: const EdgeInsets.fromLTRB(32, 16, 32, 32),
       child: ButtonTheme(
         minWidth: 300.0,
         height: 50.0,
@@ -158,6 +176,7 @@ class InstituicaoSelecionada extends StatelessWidget {
               descricao,
               icones,
               textosEnderecoContato,
+              gps,
               botaoDoacao,
             ],
           ),
