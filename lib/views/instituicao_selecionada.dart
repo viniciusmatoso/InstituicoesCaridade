@@ -12,6 +12,8 @@ class InstituicaoSelecionada extends StatelessWidget {
   String estado = '';
   String telefone = '';
   String email = '';
+  String descricao = '';
+  String foto = '';
 
   void _loadInstituicao(Instituicao instituicao){
     if(instituicao != null){
@@ -23,6 +25,8 @@ class InstituicaoSelecionada extends StatelessWidget {
       estado = instituicao.estado;
       telefone = instituicao.telefone;
       email = instituicao.email;
+      descricao = instituicao.descricao;
+      foto = instituicao.foto;
     }
   }
 
@@ -36,7 +40,7 @@ class InstituicaoSelecionada extends StatelessWidget {
     _loadInstituicao(instituicao);
 
 
-    Widget descricao = Container(
+    Widget descricaoTela = Container(
       padding: const EdgeInsets.fromLTRB(16, 24, 16, 0),
       child: Row(
         children: [
@@ -62,7 +66,7 @@ class InstituicaoSelecionada extends StatelessWidget {
                 Padding(
                   padding: const EdgeInsets.fromLTRB(8, 0, 8, 0),
                   child: Text(
-                    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industrys standard dummy text ever since the 1500s',
+                    '$descricao',
                     style: TextStyle(
                       fontSize: 14,
                       color: Colors.grey[800],
@@ -122,14 +126,14 @@ class InstituicaoSelecionada extends StatelessWidget {
       child: Center(
         child: TextButton(
           child: Text(
-            "Ver no GPS",
+            "Ver no maps",
             style: TextStyle(
               fontSize: 16,
               fontWeight: FontWeight.w400,
             ),
           ),
           onPressed: (){
-            Navigator.pushNamed(context, '/menu_usuario/instituicao/gps');
+            Navigator.pushNamed(context, '/menu_usuario/instituicao/gps', arguments: instituicao);
           },
         ),
       ),
@@ -167,13 +171,13 @@ class InstituicaoSelecionada extends StatelessWidget {
           ),
           child: ListView(
             children: [
-              Image.asset(
-                  'images/instituicao.jpg',
+              Image.network(
+                  '$foto',
                   width: 600,
                   height: 200,
                   fit: BoxFit.cover,
               ),
-              descricao,
+              descricaoTela,
               icones,
               textosEnderecoContato,
               gps,

@@ -130,7 +130,7 @@ class RadioWidget extends State<_RadioButton>{
 
   String radioItem = '';
 
-  setSelecionarCondicao(String val){
+  void setSelecionarCondicao(String val){
     setState(() {
       radioItem = val;
     });
@@ -151,6 +151,7 @@ class RadioWidget extends State<_RadioButton>{
               onChanged: (value) {
                 setState(() {
                   setSelecionarCondicao(value);
+                  widget.valor(value);
                 });
               },
             ),
@@ -164,6 +165,7 @@ class RadioWidget extends State<_RadioButton>{
               onChanged: (value) {
                 setState(() {
                   setSelecionarCondicao(value);
+                  widget.valor(value);
                 });
               },
             ),

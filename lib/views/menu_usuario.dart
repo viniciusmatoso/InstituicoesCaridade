@@ -30,7 +30,7 @@ class MenuUsuario extends StatelessWidget {
           '/menu_usuario/instituicao/gps' : (context) => GPS(),
           '/menu_usuario/instituicao/nova_doacao' : (context) => NovaDoacao(),
           '/menu_usuario/doacoes' : (context) => DoacoesUsuario(),
-          '/menu_usuarios/doacoes/brinquedo_selecionado' : (context) => BrinquedoSelecionado(),
+          '/menu_usuario/doacoes/brinquedo_selecionado' : (context) => BrinquedoSelecionado(),
         },
       ),
     );

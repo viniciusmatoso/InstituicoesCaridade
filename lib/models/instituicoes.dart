@@ -14,6 +14,8 @@ class Instituicao{
   final String estado;
   final String foto;
   final String descricao;
+  //final double latitude;
+  //final double longitude;
 
   const Instituicao({
     this.id,
@@ -28,5 +30,7 @@ class Instituicao{
     @required this.estado,
     @required this.foto,
     @required this.descricao,
+    //@required this.latitude,
+    //@required this.longitude,
 });
 }

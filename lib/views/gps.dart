@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:projeto_flutter/models/instituicoes.dart';
 
 class GPS extends StatefulWidget {
   @override
@@ -9,14 +10,16 @@ class GPS extends StatefulWidget {
 class _Maps extends State<GPS> {
   GoogleMapController mapController;
 
-  final LatLng _center = const LatLng(45.521563, -122.677433);
-
   void _onMapCreated(GoogleMapController controller) {
     mapController = controller;
   }
 
   @override
   Widget build(BuildContext context) {
+    //final Instituicao instituicao = ModalRoute.of(context).settings.arguments;
+
+    LatLng _center = LatLng(-25.415218, -49.2548741);
+
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
@@ -33,7 +36,7 @@ class _Maps extends State<GPS> {
           onMapCreated: _onMapCreated,
           initialCameraPosition: CameraPosition(
             target: _center,
-            zoom: 11.0,
+            zoom: 18.0,
           ),
         ),
       ),

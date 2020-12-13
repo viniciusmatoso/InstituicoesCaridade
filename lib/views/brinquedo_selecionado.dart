@@ -1,9 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:projeto_flutter/models/doacoes.dart';
 
 class BrinquedoSelecionado extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+
+    final Doacao doacao = ModalRoute.of(context).settings.arguments;
 
     Widget descricao = Container(
       child: Padding(
@@ -20,13 +23,12 @@ class BrinquedoSelecionado extends StatelessWidget {
               ),
             ),
             Text(
-              'Boneca de Pano',
+              doacao.nomeBrinquedo,
               style: TextStyle(
                 backgroundColor: Colors.white,
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.italic,
               ),
             ),
             Padding(
@@ -42,13 +44,12 @@ class BrinquedoSelecionado extends StatelessWidget {
               ),
             ),
             Text(
-              'Usado',
+              doacao.condicao,
               style: TextStyle(
                 backgroundColor: Colors.white,
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.italic,
               ),
             ),
             Padding(
@@ -64,13 +65,12 @@ class BrinquedoSelecionado extends StatelessWidget {
               ),
             ),
             Text(
-              'Aguardando Aprovação...',
+              doacao.situacao,
               style: TextStyle(
                 backgroundColor: Colors.white,
                 fontSize: 16,
                 color: Colors.blue,
                 fontWeight: FontWeight.w700,
-                fontStyle: FontStyle.italic,
               ),
             ),
           ],
@@ -80,7 +80,7 @@ class BrinquedoSelecionado extends StatelessWidget {
 
     return Scaffold(
         appBar: AppBar(
-          title: Text('Boneca de pano', style: TextStyle(
+          title: Text(doacao.nomeBrinquedo, style: TextStyle(
               color: Colors.white),
           ),
         ),
@@ -96,8 +96,8 @@ class BrinquedoSelecionado extends StatelessWidget {
           children: [
             Padding(
               padding: const EdgeInsets.all(24.0),
-              child: Image.asset(
-                'images/sem_imagem.jpg',
+              child: Image.network(
+                doacao.imagem,
                 width: 200,
                 height: 250,
               ),
