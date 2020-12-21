@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:projeto_flutter/models/usuarios.dart';
+import 'package:projeto_flutter/provider/usuarios_provider.dart';
+import 'package:provider/provider.dart';
 
 class Perfil extends StatelessWidget {
-
+  final Map<String, String> _formData = {};
+  final _formSalvar = GlobalKey<FormState>();
 
   @override
   Widget build(BuildContext context) {
 
     final Usuario usuario = ModalRoute.of(context).settings.arguments;
+
 
     return Scaffold(
       appBar: AppBar(
@@ -60,7 +64,17 @@ class Perfil extends StatelessWidget {
                         side: BorderSide(color: Colors.blue),
                       ),
                       onPressed: (){
-
+                        _formSalvar.currentState.save();
+                        Provider.of<UsuariosProvider>(context, listen: false).put(
+                            Usuario(
+                              id: _formData['id'],
+                              nome: _formData['nome'],
+                              email: _formData['email'],
+                              telefone: _formData['telefone'],
+                              senha: _formData['senha'],
+                              sexo: _formData['sexo'],
+                            ),
+                        );
                       },
                       child: Text("Salvar"),
                     ),
@@ -93,11 +107,11 @@ class RadioButtonWidget extends State<_RadioButton>{
     });
   }
 
-
   Widget build(BuildContext context){
 
     final Usuario usuario = ModalRoute.of(context).settings.arguments;
 
+    setSelecionarSexo(usuario.nome);
 
     return Padding(
       padding: const EdgeInsets.fromLTRB(0, 20, 0, 0),

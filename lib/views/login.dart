@@ -29,7 +29,6 @@ class Login extends StatelessWidget {
                 children: [
                   /*2*/
                   Container(
-                    margin: const EdgeInsets.fromLTRB(0, 25, 0, 0),
                     padding: const EdgeInsets.only(bottom: 18),
                     child: TextFormField(
                       //controller: email,
