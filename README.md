@@ -1,7 +1,5 @@
 # projeto_flutter
 
-Projeto de Flutter para matéria de WebApps
-
 ## Getting Started
 
 This project is a starting point for a Flutter application.
